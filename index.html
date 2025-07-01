@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Monster Music Pub 菜單</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Times New Roman", serif;
+      color: #3b2f1c;
+      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background-image: url('https://i.ibb.co/0R3w8jGX/backgroun.jpg');
+      background-repeat:no-repeat;
+      background-position;center center;
+      background-size:cover;
+      opacity: 1;
+      pointer-events: none;
+    }
+    #container {
+      display: flex;
+      min-height: 100vh;
+    }
+    #sidebar {
+      width: 220px;
+      background-color: rgba(255, 248, 220, 0.6);
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    #sidebar h1 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    #sidebar a {
+      display: block;
+      margin-bottom: 12px;
+      color: #2a1f0e;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #sidebar a:hover {
+      text-decoration: underline;
+    }
+    #content {
+      flex-grow: 1;
+      padding: 40px;
+      background-color: rgba(255, 255, 240, 0.6);
+      overflow-y: auto;
+    }
+    .category {
+      display: none;
+      margin-bottom: 40px;
+    }
+    .category.active {
+      display: block;
+    }
+    .category h2 {
+      border-bottom: 2px solid #aa8855;
+      padding-bottom: 8px;
+      font-size: 22px;
+      color: #523e27;
+    }
+    pre {
+      font-family: "Times New Roman", serif;
+      font-size: 16px;
+      line-height: 1.8;
+      white-space: pre-wrap;
+    }
+    footer {
+      background-color: rgba(255, 255, 240, 0.9);
+      padding: 12px 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #5f4b2b;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    footer a {
+      color: #5f4b2b;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 768px) {
+      #container {
+        flex-direction: column;
+      }
+
+      #sidebar {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 10px;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background-color: rgba(255, 248, 220, 0.9);
+        overflow-x: auto;
+      }
+
+      #sidebar h1 {
+        display: none;
+      }
+
+      #sidebar a {
+        margin: 5px;
+        font-size: 14px;
+        padding: 6px 10px;
+        background-color: rgba(255, 255, 255, 0.4);
+        border-radius: 5px;
+        white-space: nowrap;
+      }
+
+      #content {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="sidebar">
+      <h1>Monster Music Pub</h1>
+      <a onclick="showCategory('whisky')">威士忌 Whisky</a>
+      <a onclick="showCategory('vodka')">伏特加 Vodka</a>
+      <a onclick="showCategory('tequila')">龍舌蘭 Tequila</a>
+      <a onclick="showCategory('brandy')">白蘭地 Brandy</a>
+      <a onclick="showCategory('red_wine')">紅酒 Red Wine</a>
+      <a onclick="showCategory('white_wine')">白酒 White Wine</a>
+      <a onclick="showCategory('special')">特調類 Special</a>
+      <a onclick="showCategory('tequila_mix')">龍舌蘭類</a>
+      <a onclick="showCategory('rum')">蘭姆類 Rum</a>
+      <a onclick="showCategory('brandy_mix')">白蘭地類</a>
+      <a onclick="showCategory('vodka_mix')">伏特加類</a>
+      <a onclick="showCategory('gin')">琴酒類 Gin</a>
+      <a onclick="showCategory('whisky_mix')">威士忌類</a>
+      <a onclick="showCategory('beer')">啤酒 Beer</a>
+      <a onclick="showCategory('shot')">一口杯 Shot</a>
+      <a onclick="showCategory('alcohol_free')">無酒精 Alcohol Free</a>
+      <a onclick="showCategory('stirfries')">熱炒類 Stirfries</a>
+      <a onclick="showCategory('barbecue')">燒烤類 Barbecue</a>
+      <a onclick="showCategory('frieds')">酥炸類 Frieds</a>
+      <a onclick="showCategory('tube_shots')">試管酒與 Shot 組</a>
+    </div>
+    <div id="content">
+     <div id="whisky" class="category active">
+      <h2>威士忌 Whisky</h2>
+      <pre>
+約翰走路金牌18年 Johnnie Walker Gold Label 18Y - NT$ 4000 / NT$ 320
+約翰走路綠牌15年 Johnnie Walker Green Label 15Y - NT$ 3300 / NT$ 270
+約翰走路黑牌12年 Johnnie Walker Black Label 12Y - NT$ 2800 / NT$ 250
+蘇格登12年 Singleton 12Y - NT$ 3500 / NT$ 290
+麥卡倫雙桶12年 Macallan Double Cask 12Y - NT$ 4200 / NT$ 350
+格蘭路思12年 Glenrothes 12 - NT$ 3500
+裸雀 Naked Grouse - NT$ 3200 / NT$ 250
+百富12年雙桶 Balvenie 12Y DoubleWood - NT$ 3800 / NT$ 310
+百富14年蘭姆桶 Balvenie 14Y Caribbean Cask - NT$ 5400
+大摩12年 Dalmore 12Y - NT$ 4100
+格蘭利威12年 Glenlivet 12Y - NT$ 3200 / NT$ 270
+傑克丹尼爾 Jack Daniel's - NT$ 2800 / NT$ 250
+格蘭菲迪12年 Glenfiddich Single Malt 12Y - NT$ 3000 / NT$ 250
+格蘭菲迪15年 Glenfiddich Single Malt 15Y - NT$ 3500
+      </pre>
+    </div>
+
+    <div id="vodka" class="category">
+      <h2>伏特加 Vodka</h2>
+      <pre>
+雪豹 Snow Leopard - NT$ 3800
+艾絲芮德融合伏特加 X.Rated vodka - NT$ 3200 / NT$ 250
+SKYY伏特加 Skyy vodka - NT$ 2500
+      </pre>
+    </div>
+
+    <div id="tequila" class="category">
+      <h2>龍舌蘭 Tequila</h2>
+      <pre>
+培恩(黃) Patron Anejo Tequila - NT$ 4100
+培恩(銀) Patron Silver Tequila - NT$ 3800
+唐胡立歐(白) Don Julio Blanco Tequila - NT$ 4000
+金快活 Jose Cuervo Especial Tequila - NT$ 2700
+      </pre>
+    </div>
+
+    <div id="brandy" class="category">
+      <h2>白蘭地 Brandy</h2>
+      <pre>
+人頭馬1738皇家禮讃 Remy Martin 1738 Accord Royal - NT$ 3800
+馬爹利名仕 Martell Noblige Brandy - NT$ 3900
+軒尼詩V.S.O.P Hennessy V.S.O.P - NT$ 3800 / NT$ 300
+      </pre>
+    </div>
+    <div id="red_wine" class="category">
+      <h2>紅酒 Red Wine</h2>
+      <pre>
+智利典藏蘇維翁紅酒 Gran Reserva Cabernet Sauvignon - NT$ 1800
+智利國寶天竹紅酒 NATIVO - NT$ 1400
+法國拜倫微甜紅酒 BARON D'ARIGNAC - NT$ 900
+      </pre>
+    </div>
+
+    <div id="white_wine" class="category">
+      <h2>白酒 White Wine</h2>
+      <pre>
+法國酩悅香檳 MOET & CHANDON CHAMPAGNE - NT$ 4500
+宇治茶梅酒 CHOYA UJI GREEN TEA UMESHU - NT$ 2000
+彩虹之星微甜白酒 Mosto D'uva Parzialmente Fermentato - NT$ 1400
+沛樂西西里白酒 Pellegrino Zebo Moscato TelleSiciliane Igor - NT$ 1400
+      </pre>
+    </div>
+
+    <div id="special" class="category">
+      <h2>特調類 Special</h2>
+      <pre>
+長岛冰茶 Long Island - NT$ 360
+伏特加/琴酒/蘭姆酒/龍舌蘭/君度橙酒/檸檬汁/自製糖漿
+喝起來似檸檬紅茶,簡單入口,卻有著難以想像的後勁!
+酒精濃度約23%
+
+奶酒 Baileys Coffee - NT$ 320
+伏特加/貝禮斯/巧克力香甜酒/濃縮咖啡/鮮奶油
+特別加入濃縮咖啡中和甜味
+讓調酒甜而不膩,讓人愛不釋手。
+酒精濃度約12%
+
+秘密 Secret - NT$ 320
+琴酒/玫瑰香甜酒/荔枝香甜酒/檸檬汁/蔓越莓汁/自製糖漿
+都說是秘密你還問!?
+酒精濃度約12%
+
+Monster特調 Monster Special - NT$ 330 / NT$ 380
+看了這么多還不知道喝什麼嗎?
+告訴我們你的想法,交給我們吧!
+      </pre>
+    </div>
+    <div id="tequila_mix" class="category">
+      <h2>龍舌蘭類 Tequila</h2>
+      <pre>
+日出龍舌蘭 Tequila Sunrise - NT$ 250
+龍舌蘭/柳橙汁/紅石榴糖漿
+以龍舌蘭及柳橙汁搭配石榴的紅點出日出的光芒。
+酒精濃度約11%
+
+深水炸彈 Depth bomb - NT$ 300
+將一小杯龍舌蘭投入啤酒中
+猶如炸彈沉入大海中,轟炸你的味蕾。
+酒精濃度約8%
+
+瑪格麗特 Margarita - NT$ 320
+龍舌蘭/君度橙酒/檸檬汁
+這杯酒美麗的名字下,有著一個哀傷的故事
+帶著獨特的酸澀及一點鹹。
+酒精濃度約28%
+      </pre>
+    </div>
+    <div id="rum" class="category">
+      <h2>蘭姆類 Rum</h2>
+      <pre>
+自由古巴 Rum Coke - NT$ 250
+來自古巴的蘭姆酒配上代表自由的美國可樂
+就成了這杯爽口的調酒。
+酒精濃度約13%
+
+戴克瑞 Daiquiri - NT$ 280
+蘭姆酒/檸檬汁/自製糖漿
+名字源於古巴的一座礦山
+清爽微甜的口感帶著一絲蘭姆酒的蔗香。
+酒精濃度約22%
+
+藍色夏威夷 Blue Hawaii - NT$ 320
+蘭姆酒/椰子利口酒/藍柑橘利口酒/新鮮鳳梨/檸檬汁
+自製糖漿,充滿熱帶水果元素,彷彿置身夏威夷般的放松。
+酒精濃度約13%
+
+鳳梨椰子盅 Pina Colada - NT$ 320
+蘭姆酒/椰子利口酒/鮮奶油/新鮮鳳梨/檸檬汁/自製漿
+充滿熱帶感的獨特風味
+在全世界酒吧都是一杯非常熱門的調酒。
+酒精濃度約11%
+
+莫西多 Mojito - NT$ 350
+口味選擇:原味、葡萄柚、香吉士、紅酒葡萄
+蘭姆酒/新鮮薄荷/新鮮檸檬/自製糖漿/蘇打水
+蘭姆酒的蔗香配上薄荷葉的沁涼添加上滿滿的碎冰
+清爽酸甜的口感連知名作家海明威都為之瘋狂。
+酒精濃度約17%
+      </pre>
+    </div>
+    <div id="brandy_mix" class="category">
+      <h2>白蘭地類 Brandy</h2>
+      <pre>
+側車 Side Car - NT$ 350
+白蘭地/君度橙酒/檸檬汁
+據說一戰末期一位將軍與他的副官
+到酒吧點了以白蘭地為基底的調酒
+調酒師便以他們所騎乘的車來命名
+是廣為流傳歐美國家的經典調酒。
+酒精濃度約29%
+
+香格里拉 Sangria - NT$ 320
+白蘭地/紅酒/君度橙酒/蔓越莓汁/檸檬汁/自製糖漿
+使用白蘭地及紅酒為基酒添加新鮮水果調製而成
+香氣十足,酸甜中帶有一絲紅酒的澀
+是非常受女性歡迎的經典調酒。
+酒精濃度約15%
+
+蘋果白蘭地 Apple Brandy - NT$ 320
+白蘭地/蘋果利口酒/香橙白蘭地/覆盆子/蔓越莓汁/檸檬汁/
+自製糖漿入口酸酸甜甜又不失酒感
+絕對是微醺的必備調酒!
+酒精濃度約13%
+
+水果派对 Fruit Party - NT$ 320
+白蘭地/香橙白蘭地/蜜李酒/新鮮鳳梨/檸檬汁/自製糖漿
+以新鮮鳳梨搭配多種口味的利口酒
+打造出這杯滿滿水果風味的調酒
+喜歡水果的你不要錯過了!
+酒精濃度約15%
+      </pre>
+    </div>
+    <div id="vodka_mix" class="category">
+      <h2>伏特加類 Vodka</h2>
+      <pre>
+伏特加萊姆 Vodka Lime - NT$ 300
+伏特加/新鮮檸檬/糖,使用新鮮檸檬及砂糖調製微酸的口感
+配上天然檸檬的香氣及杯口的海鹽,爽口又不失酒感。
+酒精濃度約23%
+
+螺絲起子 Screwdriver - NT$ 250
+以伏特加柳橙汁再用螺絲起子攪拌
+這就是這杯調酒名稱的由來。
+酒精濃度約13%
+
+鹽狗 Salty Dog - NT$ 250
+以伏特加,葡萄柚汁及口滿滿的海鹽,帶出清爽的口感
+酒精濃度約13%
+
+神風特攻隊 Kamikaze - NT$ 280
+伏特加/君度橙酒/檸檬汁/自製糖漿
+一名美國調酒師所創以日本敢死隊命名的經典調酒
+口感辛辣濃郁彷彿二戰時期日本敢死隊帶給人的感受。
+酒精濃度約27%
+
+性慾海灘 Sex On The Beach - NT$ 320
+伏特加/水蜜桃利口酒/哈密瓜利口酒/新鮮蘋果/柳橙汁
+蔓越莓汁/檸檬汁/自製糖漿,充滿各式水果香氣
+喝起來讓人彷彿置身度假勝地放松身心。
+酒精濃度約13%
+
+柯夢波丹 Cosmopolitan - NT$ 320
+伏特加/君度橙酒/蔓越莓汁/自製糖漿
+源自於經典影集慾望城市中女主角手中的調
+酒精濃度約19%
+
+蘋果馬丁尼 Apple Martini - NT$ 320
+伏特加/蘋果利口酒/新鮮蘋果
+帶有蘋果清香,非常適合喜歡純粹口感的人飲用。
+酒精濃度約23%
+      </pre>
+    </div>
+    <div id="gin" class="category">
+      <h2>琴酒類 Gin</h2>
+      <pre>
+琴湯尼 Gin Tonic - NT$ 250
+琴酒+通寧氣泡水。
+酒精濃度約14%
+
+琴費士 Gin Fizz - NT$ 280
+琴酒/檸檬汁/蘇打水/自製糖漿
+香氣豐富的琴酒配上蘇打水的氣泡感
+微微酸甜如汽水般輕鬆好喝!
+酒精濃度約17%
+
+琴雷 Gim Let - NT$ 280
+琴酒/檸檬/自製糖漿
+充滿草本香氣的琴酒加入新鮮檸檬枝及自製糖漿
+酸酸甜甜的口味卻又不失酒感的經典調酒。
+酒精濃度約22%
+
+新加坡司令 Singapore Sling - NT$ 320
+琴酒/班尼迪克/櫻桃白蘭地/紅石榴糖漿/新鲜鳳梨/檸檬汁
+自製糖漿,廣為流傳來自新加坡的經典調酒
+帶有草本及豐富果香口感溫和,層次鮮明流傳至今仍非常多人喜愛。
+酒精濃度約13%
+
+尼格羅尼 Negroni - NT$ 320
+琴酒/金巴利/甜香艾酒
+酒感濃厚獨特的草本香氣及苦甜的口感令人回味不已
+非常適合喜歡琴酒的人細細品嘗。
+酒精濃度約28%
+
+馬丁尼 Martini - NT$ 320
+琴酒/苦艾酒
+琴酒藥草與杜松子的香氣
+搭配白葡萄釀造的苦艾酒交織出雞尾酒之王馬丁尼。
+酒精濃度約40%
+      </pre>
+    </div>
+    <div id="whisky_mix" class="category">
+      <h2>威士忌類 Whisky</h2>
+      <pre>
+威士忌可樂 Whisky Coke - NT$ 250
+波本威士忌+可樂。
+酒精濃度約13%
+
+酸威士忌 Whisky Sour - NT$ 280
+波本威士忌/檸檬汁/自製糖漿/蛋白
+酸甜綿密的口感點綴些許的苦精。
+酒精濃度約18%
+
+田納西冰酒 Tennessee Ice Whisky - NT$ 320
+威士忌/君度橙酒/新鮮鳳梨/新鮮薄荷/檸檬汁/自製糖漿
+來自田納西的傑克丹尼爾威士忌加入新鮮鳳梨及薄荷
+使原本濃烈的威士忌變得溫和順口
+也賦予了更豐富的層次及口感。
+酒精濃度約14%
+
+老流行 Old Fashion - NT$ 320
+波本威士忌/方糖/苦精
+一杯流行於歐美國家的經典雞尾酒
+酒感濃烈口感微甜中帶有些許苦味。
+酒精濃度約37%
+
+曼哈頓 Manhattan - NT$ 320
+波本威士忌/甜香艾酒/苦精
+以波本威士忌搭配甜香艾酒及柑橘苦
+使威士忌多了幾分香氣及層次
+是一杯與馬丁尼齊名的雞尾酒之后。
+酒精濃度約35%
+
+教父 Godfather - NT$ 320
+威士忌/杏仁香甜酒
+向經典電影《教父》致敬的雞尾酒。
+酒精濃度約35%
+      </pre>
+    </div>
+    <div id="beer" class="category">
+      <h2>啤酒 Beer</h2>
+      <pre>
+百威 Budweiser - NT$ 150
+海尼根星銀 Heineken Silver - NT$ 180
+百威金尊 Budweiser SUPREME - NT$ 150
+金牌 Taiwan Beer - NT$ 150
+可樂娜 Corona - NT$ 180
+      </pre>
+    </div>
+    <div id="shot" class="category">
+      <h2>一口杯 Shot</h2>
+      <pre>
+龍舌蘭 - NT$ 200  
+唐胡力歐(白)龍舌蘭 - NT$ 300  
+野格 Shot - NT$ 2500 / NT$ 200  
+B52 轟炸機 - NT$ 300  
+B55 轟炸機 - NT$ 350  
+生命之水 - NT$ 250  
+艾碧斯 - NT$ 280  
+火紅艾碧斯 - NT$ 280  
+野格炸彈 - NT$ 300  
+艾碧斯水果炸彈 (6杯) - NT$ 850  
+檸檬水滴 (6杯) - NT$ 850
+      </pre>
+    </div>
+    <div id="alcohol_free" class="category">
+      <h2>無酒精 Alcohol Free</h2>
+      <pre>
+無酒精特調 Mocktail - NT$ 270  
+柳橙汁 Orange Juice - NT$ 150  
+檸檬汁 Lemon Juice - NT$ 150  
+蔓越莓汁 Cranberry Juice - NT$ 150  
+葡萄柚汁 Grapefruit Juice - NT$ 150  
+可樂 Coke - NT$ 130  
+七喜 7-UP - NT$ 130
+      </pre>
+    </div>
+    <div id="stirfries" class="category">
+      <h2>熱炒類 Stirfries</h2>
+      <pre>
+洋蔥牛小排 - NT$ 300  
+Beef ribs with onion
+
+香嫩油雞 - NT$ 290  
+Chicken with scallion oil
+
+避風塘草蝦 - NT$ 300  
+Chili Garlic Shrimp Stir Fry
+
+泰式涼拌中卷 - NT$ 320  
+Thai Style Squid Salad
+
+藍带燒肉 - NT$ 300  
+Barbecue pork
+
+五味生蠔 - NT$ 360  
+Oyster
+
+辣炒海鮮 - NT$ 320  
+Spicy fried seafood
+
+宮保蝦仁 - NT$ 300  
+Gong Bao Shrimp
+
+四季肥腸 - NT$ 290  
+Intestine With String Beans
+
+蝦仁煎蛋 - NT$ 250  
+Shrimp Omelette
+
+聖品溪蝦酥 - NT$ 280  
+Crisp Shrimp
+
+客家小炒 - NT$ 290  
+Pork and Squid With Dried Turnip and Garlic
+
+芥末尤米花 - NT$ 280  
+Squid With Green Mustard
+
+宮保皮蛋 - NT$ 280  
+Gong Bao Preserved Egg
+
+空心菜牛肉 - NT$ 280  
+Beef With Spinach
+
+宮保臭豆腐 - NT$ 280  
+Gong Bao Stinky Tofu
+
+杏鮑菇炒玉米筍 - NT$ 280  
+Stir-Fried Pleurotus With Baby Corn
+
+手工水餃(十顆) 韭菜/高麗菜 - NT$ 200  
+Dumpling Leek / Cabbage Pork
+
+九層塔蛋 - NT$ 200  
+Basil Omelette
+
+季節時蔬 - NT$ 180  
+Seasonal Vegetable
+
+蔥蛋 - NT$ 180  
+Green Onion Omelette
+
+炒空心菜 - NT$ 200  
+Stir-Fried Water Spinach
+
+炒高麗菜 - NT$ 180  
+Stir-Fried Cabbage
+
+涼拌小黃瓜 - NT$ 200  
+Cucumber Salad
+      </pre>
+    </div>
+    <div id="barbecue" class="category">
+      <h2>燒烤類 Barbecue</h2>
+      <pre>
+烤鹹豬肉 - NT$ 300  
+Grilled Salty Pork
+
+生猛烤蝦 - NT$ 300  
+Grilled Shrimps
+
+香烤鯖魚 - NT$ 280  
+Grilled Mackerel
+      </pre>
+    </div>
+    <div id="frieds" class="category">
+      <h2>酥炸類 Frieds</h2>
+      <pre>
+一口腸 - NT$ 220  
+Fried Small Sausages
+
+雞塊 - NT$ 220  
+Fried Nuggets
+
+薯條 - NT$ 180  
+French Fries
+
+洋蔥圈 - NT$ 180  
+Fried Onion Rings
+
+甜不辣 - NT$ 180  
+Fried Tempuras
+
+雞米花 - NT$ 180  
+Popcorn Chicken
+
+以上三拼 - NT$ 360 / 以上四拼 - NT$ 460  
+Above the line pick: Any three NT$ 360 | Any four NT$ 460
+
+雞G酥 - NT$ 300  
+Fried Popcorn Chicken
+
+香酥雞軟骨 - NT$ 300  
+Crispy Chicken Cartilage
+
+炸杏鮑菇 - NT$ 280  
+Fried Pleurotus
+
+炸雞翅 - NT$ 260  
+Fried Chicken Wings
+      </pre>
+    </div>
+    <div id="tube_shots" class="category">
+      <h2>試管酒 / 造型 Shot 組</h2>
+      <pre>
+試管酒（18支）- NT$ 550  
+伏特加 / 蘭姆酒 / 果露 製成冰沙注入試管內  
+口味：水蜜桃 / 柳橙 / 蔓越莓 / 草莓 / 荔枝 / 百香果 / 葡萄 / 葡萄柚  
+（加 NT$ 100 可選擇 2 種口味綜合）
+
+造型 Shot 組  
+龍舌蘭 Shot（7杯）- NT$ 1200  
+烈酒組（7杯）- NT$ 1500  
+水果特調 Shot（10杯）- NT$ 600  
+無酒精 Shot（10杯）- NT$ 500  
+歡樂 Shot 組（6杯）- NT$ 360  
+花、果、茶 Shot 組（6杯）- NT$ 600  
+
+七彩繽紛組  
+有酒精（6杯）- NT$ 700  
+無酒精（6杯）- NT$ 500
+      </pre>
+      </div>
+
+      </div> <!-- #content -->
+</div> <!-- #container -->
+
+<footer>
+  IG：<a href="https://www.instagram.com/monster_music_pub?igsh=MWx0Mnp2Y3V0NHpoaQ==" target="_blank">@monster_music_pub</a>　
+  聯絡電話：03-3321681
+</footer>
+
+<script>
+  function showCategory(id) {
+    const categories = document.querySelectorAll('.category');
+    categories.forEach(cat => cat.classList.remove('active'));
+    const selected = document.getElementById(id);
+    if (selected) {
+      selected.classList.add('active');
+
+      // ✅ 自動捲動到頂部
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  window.onload = function () {
+    showCategory('whisky');
+  };
+</script>
+</body>
+</html>
